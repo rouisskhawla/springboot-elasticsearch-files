@@ -1,0 +1,151 @@
+{
+  "name": "elasticsearch",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "upload file",
+      "filename": "upload file.bru",
+      "seq": 1,
+      "settings": {
+        "encodeUrl": true,
+        "timeout": 0
+      },
+      "tags": [],
+      "examples": [],
+      "request": {
+        "url": "http://localhost:8084/api/files/upload",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "multipartForm",
+          "formUrlEncoded": [],
+          "multipartForm": [
+            {
+              "type": "file",
+              "name": "file",
+              "value": [
+                "..\\elasticsearch-docs\\58-example-sample.json"
+              ],
+              "enabled": true
+            }
+          ],
+          "file": [
+            {
+              "filePath": "",
+              "contentType": "",
+              "selected": false
+            }
+          ]
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "inherit"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get indexes",
+      "filename": "get indexes.bru",
+      "seq": 2,
+      "settings": {
+        "encodeUrl": false,
+        "timeout": 0
+      },
+      "tags": [],
+      "examples": [],
+      "request": {
+        "url": "https://192.168.1.10:9200/_cat/indices?v",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "v",
+            "value": "",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "basic",
+          "basic": {
+            "username": "elastic",
+            "password": "<password>"
+          }
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "get indexes with content",
+      "filename": "get indexes with content.bru",
+      "seq": 4,
+      "settings": {
+        "encodeUrl": false,
+        "timeout": 0
+      },
+      "tags": [],
+      "examples": [],
+      "request": {
+        "url": "https://192.168.1.10:9200/58/_search?q=*",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "q",
+            "value": "*",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "basic",
+          "basic": {
+            "username": "elastic",
+            "password": "<password>"
+          }
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "elasticsearch",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0,
+    "filesCount": 0
+  }
+}
