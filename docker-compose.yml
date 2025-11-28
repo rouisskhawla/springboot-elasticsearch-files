@@ -1,0 +1,6 @@
+services:
+    springboot-elasticsearch-files: 
+        image: khawlarouiss/springboot-elasticsearch-files:latest
+        ports:
+            - "8084:8084" 
+        restart: always
