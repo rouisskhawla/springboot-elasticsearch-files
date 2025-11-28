@@ -110,4 +110,5 @@ jobs:
           IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/springboot-elasticsearch-files
           docker build -t $IMAGE_NAME:latest .
 
-          docker push $IMAGE_NAME::latest
+          docker push $IMAGE_NAME:latest
+
