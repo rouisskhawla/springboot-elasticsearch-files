@@ -102,8 +102,8 @@ Example:
 C:\Program Files\Java\jdk-17
 ```
 2. Copy the CA certificate to th host where Java app is running:
-Path in Elasticsearch VM : /etc/elasticsearch/certs/http_ca.crt
-3. Import the CA certificate:  
+> path in Elasticsearch VM: /etc/elasticsearch/certs/http_ca.crt
+4. Import the CA certificate:  
 ```cmd
 keytool -importcert -alias elastic-ca -file "path\to\http_ca.crt" -keystore "C:\Program Files\Java\jdk-17\lib\security\cacerts" -storepass changeit
 ```
