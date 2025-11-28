@@ -15,7 +15,7 @@ A Spring Boot application for uploading and storing files in **Elasticsearch**, 
 - [API Endpoints](#api-endpoints)  
 - [Testing](#testing)  
 - [Testing with Bruno](#testing-with-bruno)  
-- [Future Improvements](#future-improvements)  
+- [CI Pipeline](#ci-pipeline)
 - [Docs and References](#docs-and-references)
 
 ---
@@ -201,10 +201,81 @@ Bruno can be used to test both the **file upload API** and **Elasticsearch insta
 
 ---
 
-## Future Improvements
+## CI Pipeline
 
-- Docker containerization for easier deployment  
-- Integration with CI/CD pipelines  
+This project uses **GitHub Actions** with a **self-hosted runner** to automate code analysis, build verification, and Docker image creation. The CI pipeline ensures consistent quality, repeatability, and secure integrations through GitHub Secrets.
+
+---
+
+### 1. Self-Hosted Runner Setup
+
+A dedicated VM is used as a **self-hosted GitHub Actions runner**
+
+**Steps:**
+1. From: **Repository → Settings → Actions → Runners → New self-hosted runner**
+2. Download the runner package to the VM.
+3. Configure the runner:
+   ```bash
+   ./config.sh --url <repository-url> --token <token>
+   ```
+4. Start the runner:
+   ```bash
+   ./run.sh
+   ```
+
+---
+
+### 2. Required GitHub Secrets
+
+From: **Settings → Secrets and variables → Actions**
+
+#### Sonar Integration
+- `SONAR_TOKEN` – Sonar authentication token
+- `SONAR_HOST_URL` – SonarCloud or SonarQube URL
+
+#### Docker Integration
+- `DOCKER_USERNAME` – Docker Hub username
+- `DOCKER_PASSWORD` – Docker Hub access token
+
+---
+
+### 3. Pipeline Stages
+
+#### **1. Checkout**
+Fetches the latest source code.
+
+#### **2. Set up JDK**
+Installs JDK 17 for build & test.
+
+#### **3. Test**
+```bash
+mvn clean test
+```
+
+#### **3. Code Analysis (Sonar)**
+Runs Sonar analysis using stored secrets.
+
+
+#### **4. Package**
+```bash
+mvn clean package
+```
+
+#### **5. Build Docker Image**
+```bash
+docker build -t <image-name> .
+```
+
+#### **6. Login to Docker Registry**
+```bash
+docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+```
+
+#### **7. Push Docker Image**
+```bash
+docker push <image-name>
+```
+
 
 ---
 
@@ -212,6 +283,8 @@ Bruno can be used to test both the **file upload API** and **Elasticsearch insta
 
 All additional documentation, including:
 
+- Pipeline execution screenshots
+- Sonar analysis screenshots
 - Screenshots of the application and testing process
 - Bruno requests collection
 - Log files from the application
