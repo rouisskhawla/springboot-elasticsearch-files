@@ -1,0 +1,1 @@
+2025-11-28T14:16:48.563+01:00  INFO 11900 --- [elasticsearch-service] [http-nio-8084-exec-4] c.d.a.e.f.controllers.FileController     : File uploaded successfully to Index: 58 

@@ -41,6 +41,7 @@ public class FileController {
 		}
 		try {
 			String indexName = fileService.saveFile(file);
+			logger.info("File uploaded successfully to Index: {} ", indexName);
 			return ResponseEntity.ok(new FileSaveResponse("File uploaded successfully to Index: ", indexName));
 		} catch (UncategorizedElasticsearchException e) {
 			logger.error("Elasticsearch error occurred while uploading file", e);

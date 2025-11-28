@@ -35,6 +35,8 @@ class ElasitcSearchConfig extends ElasticsearchConfiguration {
 	@Override
 	public ClientConfiguration clientConfiguration() {
 		try {
+			logger.info("Connecting to Elasticsearch host {} using SSL", host);
+
 			return ((MaybeSecureClientConfigurationBuilder) ClientConfiguration.builder()
 					.connectedTo(host)
 					.withBasicAuth(username, password))
